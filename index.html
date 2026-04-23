@@ -9,7 +9,25 @@
     <body>
         <div class="water-sim">
 
-            <canvas id="c"></canvas>
+            <canvas id="canvas"></canvas>
+
+            <div id="ui">
+
+                <div class="sliders">
+                    <div class="slider-row">
+                        <span>Wind</span>
+                        <input type="range" id="wind" min="0" max="100"
+                            value="40">
+                    </div>
+                    <div class="slider-row">
+                        <span>Chop</span>
+                        <input type="range" id="choppiness" min="0" max="100"
+                            value="50">
+                    </div>
+                </div>
+            </div>
+
+            <div id="hint">Click and drag to create ripples</div>
 
         </div>
 
