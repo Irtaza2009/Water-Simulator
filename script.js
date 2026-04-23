@@ -1,25 +1,35 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+(function () {
+  const canvas = document.getElementById("canvas");
+  const gl = canvas.getContext("webgl", { antialias: true, alpha: false });
 
-function draw() {
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
-
-  const g = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  g.addColorStop(0, "#00aaff");
-  g.addColorStop(1, "#004466");
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.strokeStyle = "#9be7ff";
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  for (let x = 0; x < canvas.width; x += 20) {
-    ctx.lineTo(x, canvas.height * 0.55 + Math.sin(x * 0.03) * 10);
+  if (!gl) {
+    canvas.parentElement.innerHTML = "WebGL not supported in this browser.";
+    return;
   }
-  ctx.stroke();
-}
 
-draw();
+  let W = 0,
+    H = 0,
+    t = 0;
 
-window.addEventListener("resize", draw);
+  const ripples = [];
+
+  function resize() {
+    const r = canvas.getBoundingClientRect();
+    W = canvas.width = r.width * devicePixelRatio;
+    H = canvas.height = r.height * devicePixelRatio;
+    gl.viewport(0, 0, W, H);
+  }
+
+  resize();
+  new ResizeObserver(resize).observe(canvas);
+
+  function frame(ts) {
+    const dt = Math.min(ts * 0.001 - t, 0.05);
+    t += dt;
+    gl.clearColor(0.05, 0.24 + Math.sin(t) * 0.03, 0.57, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
