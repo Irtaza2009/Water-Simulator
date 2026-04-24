@@ -1,3 +1,11 @@
+.title {
+  text-align: center;
+  font-family: "Doto", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin: 30px 0;
+}
+
 .water-sim {
   width: 100%;
   background: #000;
@@ -60,7 +68,7 @@
   left: 50%;
   transform: translateX(-50%);
   color: #ffffff55;
-  font-family: sans-serif;
+  font-family: "Pixelify Sans", sans-serif;
   font-size: 11px;
   pointer-events: none;
 }
