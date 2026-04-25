@@ -174,6 +174,31 @@
     dragging = false;
   });
 
+  canvas.addEventListener(
+    "touchstart",
+    (e) => {
+      e.preventDefault();
+      dragging = true;
+      addRipple(e.touches[0]);
+    },
+    { passive: false },
+  );
+
+  canvas.addEventListener(
+    "touchmove",
+    (e) => {
+      e.preventDefault();
+      if (dragging) {
+        addRipple(e.touches[0]);
+      }
+    },
+    { passive: false },
+  );
+
+  canvas.addEventListener("touchend", (e) => {
+    dragging = false;
+  });
+
   let last = 0;
   function frame(ts) {
     const dt = Math.min((ts - last) / 1000, 0.05);
