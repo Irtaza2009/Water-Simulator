@@ -2,6 +2,10 @@
 
 A **3D water simulation** that _runs entirely on the **GPU**!!_
 
+## Demo
+
+[Water Simulator Demo](https://github.com/user-attachments/assets/38d7c735-bece-4427-be95-33083f61d7c4)
+
 ## Here's how it works:
 
 #### Rendering technique: **Ray-marching**
